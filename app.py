@@ -1,22 +1,39 @@
 import streamlit as st
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
+import random
+import time
 
-st.set_page_config(layout="wide")
-st.title("💧 Smart Water Monitoring Dashboard")
+st.set_page_config(page_title="Smart Water Temperature Monitor", layout="wide")
 
-# Load data
-df = pd.read_csv("data/water_data.csv", names=["Time", "Water Level (%)", "Flow Rate (L/min)"])
+st.title("💧 Smart Water Temperature Monitoring System")
 
-# Show latest status
-latest = df.iloc[-1]
-st.metric("Water Level", f"{latest['Water Level (%)']} %")
-st.metric("Flow Rate", f"{latest['Flow Rate (L/min)']} L/min")
+# Initialize or get existing data
+if 'data' not in st.session_state:
+    st.session_state.data = pd.DataFrame(columns=["Time (s)", "Temperature (°C)"])
 
-# Chart
-st.subheader("Water Level Over Time")
-fig, ax = plt.subplots()
-ax.plot(df["Time"], df["Water Level (%)"], color='blue')
+# Function to simulate temperature
+def get_temperature():
+    return round(random.uniform(15, 35), 2)
+
+# Button to start monitoring
+if st.button("Start Monitoring"):
+    for i in range(1, 101):
+        temp = get_temperature()
+        new_row = {"Time (s)": i, "Temperature (°C)": temp}
+        st.session_state.data = pd.concat([st.session_state.data, pd.DataFrame([new_row])], ignore_index=True)
+
+        st.metric("Current Water Temperature", f"{temp} °C")
+
+        fig, ax = plt.subplots()
+        ax.plot(st.session_state.data["Time (s)"], st.session_state.data["Temperature (°C)"], color="blue")
+        ax.set_xlabel("Time (s)")
+        ax.set_ylabel("Temperature (°C)")
+        ax.set_title("Water Temperature Over Time")
+        st.pyplot(fig)
+
+        time.sleep(0.1)
+ue')
 plt.xticks(rotation=45)
 st.pyplot(fig)
 
