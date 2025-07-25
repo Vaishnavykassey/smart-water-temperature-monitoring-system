@@ -27,17 +27,18 @@ if st.button("Start Monitoring"):
 
         fig, ax = plt.subplots()
         ax.plot(st.session_state.data["Time (s)"], st.session_state.data["Temperature (°C)"], color="blue")
-        ax.set_xlabel("Time (s)")
+               ax.set_xlabel("Time (s)")
         ax.set_ylabel("Temperature (°C)")
         ax.set_title("Water Temperature Over Time")
         st.pyplot(fig)
 
         time.sleep(0.1)
-ue')
-plt.xticks(rotation=45)
-st.pyplot(fig)
 
-# Alert
-if latest["Water Level (%)"] < 20:
-    st.error("⚠️ Alert: Water level is critically low!")
+        plt.xticks(rotation=45)
+        st.pyplot(fig)
+
+        # Alert
+        if latest["Water Level (%)"] < 20:
+            st.error("⚠️ Alert: Water level is critically low!")
+r level is critically low!")
 
