@@ -4,19 +4,49 @@ import pandas as pd
 import random
 import time
 
-st.set_page_config(page_title="Smart Water Temperature Monitor", layout="wide")
+# Page config
+st.set_page_config(page_title="Smart Water Temperature Monitoring System", layout="centered")
 
-st.title("💧 Smart Water Temperature Monitoring System")
+# Title
+st.markdown("## 💧 Smart Water Temperature Monitoring System")
 
-# Initialize or get existing data
-if 'data' not in st.session_state:
-    st.session_state.data = pd.DataFrame(columns=["Time (s)", "Temperature (°C)"])
+# Start button
+start = st.button("Start Monitoring")
 
-# Function to simulate temperature
-def get_temperature():
-    return round(random.uniform(15, 35), 2)
+# Lists to store data
+temperature_data = []
+timestamps = []
 
-# Button to start monitoring
+# Start monitoring when button is clicked
+if start:
+    placeholder = st.empty()
+    chart_placeholder = st.empty()
+
+    start_time = time.time()
+
+    for i in range(100):  # Loop 100 times
+        current_time = time.time() - start_time
+        temperature = round(random.uniform(25.0, 35.0), 2)
+
+        # Save data
+        timestamps.append(round(current_time, 2))
+        temperature_data.append(temperature)
+
+        # Show current temperature
+        with placeholder.container():
+            st.metric(label="Current Water Temperature", value=f"{temperature} °C")
+
+        # Plot graph
+        fig, ax = plt.subplots()
+        ax.plot(timestamps, temperature_data, color="blue", marker="o")
+        ax.set_xlabel("Time (s)")
+        ax.set_ylabel("Temperature (°C)")
+        ax.set_title("Water Temperature Over Time")
+        plt.xticks(rotation=45)
+        chart_placeholder.pyplot(fig)
+
+        time.sleep(0.5)  # Simulate delay
+
 if st.button("Start Monitoring"):
     for i in range(1, 101):
         temp = get_temperature()
