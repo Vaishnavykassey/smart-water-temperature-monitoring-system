@@ -2,12 +2,12 @@
 
 This Streamlit app monitors and visualizes water temperature data.
 
-## Features
+## 🔧 Features
 - Real-time temperature simulation
 - Line chart for temperature trends
 - Simple Streamlit interface
 
-## How to Run Locally
+## 🚀 How to Run Locally
 
 ```bash
 pip install -r requirements.txt
