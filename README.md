@@ -1,14 +1,31 @@
-# smart-water-temperature-monitoring-system
+# 💧 Smart Water Temperature Monitoring System
 
-This Streamlit app monitors and visualizes water temperature data.
+A simple yet effective real-time monitoring app built using **Python** and **Streamlit** that simulates and visualizes water temperature changes over time.
+
+---
 
 ## 🔧 Features
-- Real-time temperature simulation
-- Line chart for temperature trends
-- Simple Streamlit interface
 
-## 🚀 How to Run Locally
+- 📈 Real-time simulation of water temperature
+- 🧊 Displays current water temperature in °C
+- 📊 Dynamic line chart to track temperature trends
+- 🚨 Optional alerts for low water level (can be added)
+
+---
+
+## 🛠️ Tech Stack
+
+- [Python](https://www.python.org/)
+- [Streamlit](https://streamlit.io/)
+- [Matplotlib](https://matplotlib.org/)
+- [Pandas](https://pandas.pydata.org/)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
 
 ```bash
-pip install -r requirements.txt
-streamlit run water_temp_monitor.py
+git clone https://github.com/your-username/smart-water-temperature-monitoring-system.git
+cd smart-water-temperature-monitoring-system
